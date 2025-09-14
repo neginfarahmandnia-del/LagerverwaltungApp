@@ -1,0 +1,17 @@
+﻿@page "{id}"
+@model Benutzer.DeleteModel
+@{
+    ViewData["Title"] = "Benutzer löschen";
+}
+
+<h2>Benutzer löschen</h2>
+
+<div class="alert alert-danger">
+    Bist du sicher, dass du den Benutzer <strong>@Model.User.UserName</strong> löschen möchtest?
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="User.Id" />
+    <button type="submit" class="btn btn-danger">Löschen</button>
+    <a asp-page="Index" class="btn btn-secondary">Abbrechen</a>
+</form>

@@ -1,0 +1,17 @@
+﻿@page
+@model Kategorien.CreateModel
+@{
+    ViewData["Title"] = "Kategorie erstellen";
+}
+
+<h2>Kategorie erstellen</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Kategorie.Name"></label>
+        <input asp-for="Kategorie.Name" class="form-control" />
+    </div>
+  
+    <button type="submit" class="btn btn-success">Speichern</button>
+    <a asp-page="Index" class="btn btn-secondary">Zurück</a>
+</form>

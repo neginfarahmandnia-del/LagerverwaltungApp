@@ -1,0 +1,18 @@
+﻿@page
+@model ExportModel
+@{
+    ViewData["Title"] = "📤 Exportieren";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <button class="btn btn-primary">📁 Als CSV exportieren</button>
+</form>
+
+@if (Model.DownloadLink != null)
+{
+    <div class="mt-3">
+        <a href="@Model.DownloadLink" class="btn btn-success">⬇️ CSV herunterladen</a>
+    </div>
+}

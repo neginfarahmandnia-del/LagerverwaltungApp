@@ -1,0 +1,32 @@
+﻿@page
+@model LagerverwaltungApp.Pages.Kategorien.IndexModel
+@{
+    ViewData["Title"] = "Kategorien";
+}
+
+<h2>Kategorien</h2>
+
+<a asp-page="Create" class="btn btn-primary">Neue Kategorie</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Beschreibung</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kategorie in Model.Kategorien)
+        {
+            <tr>
+                <td>@kategorie.Name</td>
+                
+                <td>
+                    <a asp-page="Edit" asp-route-id="@kategorie.Id">Bearbeiten</a> |
+                    <a asp-page="Delete" asp-route-id="@kategorie.Id">Löschen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,17 @@
+﻿@page "{id}"
+@model Kategorien.DeleteModel
+@{
+    ViewData["Title"] = "Kategorie löschen";
+}
+
+<h2>Kategorie löschen</h2>
+
+<div class="alert alert-danger">
+    Bist du sicher, dass du die Kategorie <strong>@Model.Kategorie.Name</strong> löschen möchtest?
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="Kategorie.Id" />
+    <button type="submit" class="btn btn-danger">Löschen</button>
+    <a asp-page="Index" class="btn btn-secondary">Abbrechen</a>
+</form>

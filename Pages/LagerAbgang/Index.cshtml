@@ -1,0 +1,30 @@
+﻿@page
+@model LagerverwaltungApp.Pages.LagerAbgang.IndexModel
+@{
+    ViewData["Title"] = "Lagerabgänge";
+}
+
+<h2>Lagerabgänge</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Artikel</th>
+            <th>Menge</th>
+            <th>Datum</th>
+            <th>Grund</th> <!-- NEU -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var abgang in Model.Abgaenge)
+        {
+            <tr>
+                <td>@abgang.Artikel?.Name</td>
+                <td>@abgang.Menge</td>
+                <td>@abgang.Datum.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@abgang.Grund</td> <!-- NEU -->
+
+            </tr>
+        }
+    </tbody>
+</table>

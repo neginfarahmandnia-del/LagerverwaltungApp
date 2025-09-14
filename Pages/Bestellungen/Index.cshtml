@@ -1,0 +1,48 @@
+﻿@page
+@model LagerverwaltungApp.Pages.Bestellungen.IndexModel
+@{
+    ViewData["Title"] = "Bestellungen Übersicht";
+}
+
+<h1>Bestellungen</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <form method="get" class="form-inline mb-3">
+        <input type="text" name="Suchbegriff" value="@Model.Suchbegriff" class="form-control mr-2" placeholder="Artikelname suchen..." />
+        <button type="submit" class="btn btn-secondary mr-2">🔍 Suchen</button>
+        <a asp-page="./Create" class="btn btn-primary mr-2">➕ Neue Bestellung</a>
+        <a asp-page-handler="ExportExcel" class="btn btn-success">📤 Excel Export</a>
+    </form>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Artikel</th>
+            <th>Menge</th>
+            <th>Datum</th>
+            <th>Benutzer</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bestellung in Model.Bestellungen)
+        {
+            <tr>
+                <td>@bestellung.Artikel?.Name</td>
+                <td>@bestellung.Menge</td>
+                <td>@bestellung.Bestelldatum.ToShortDateString()</td>
+                <td>@bestellung.Benutzer?.UserName</td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@bestellung.Id" class="btn btn-info btn-sm">Details</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@bestellung.Id" class="btn btn-warning btn-sm">Bearbeiten</a>
+                        <a asp-page="./Delete" asp-route-id="@bestellung.Id" class="btn btn-danger btn-sm">Löschen</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

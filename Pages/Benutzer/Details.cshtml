@@ -1,0 +1,26 @@
+﻿@page "{id}"
+@model Benutzer.DetailsModel
+@{
+    ViewData["Title"] = "Benutzerdetails";
+}
+
+<h2>Benutzerdetails</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Benutzername</dt>
+    <dd class="col-sm-9">@Model.User.UserName</dd>
+
+    <dt class="col-sm-3">Vorname</dt>
+    <dd class="col-sm-9">@Model.User.Vorname</dd>
+
+    <dt class="col-sm-3">Nachname</dt>
+    <dd class="col-sm-9">@Model.User.Nachname</dd>
+
+    <dt class="col-sm-3">Email</dt>
+    <dd class="col-sm-9">@Model.User.Email</dd>
+
+    <dt class="col-sm-3">Rolle</dt>
+    <dd class="col-sm-9">@Model.User.Rolle</dd>
+</dl>
+
+<a asp-page="Index" class="btn btn-secondary">Zurück</a>

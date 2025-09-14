@@ -1,0 +1,42 @@
+﻿@page
+@model LagerverwaltungApp.Pages.LagerAbgang.ErstellenModel
+@{
+    ViewData["Title"] = "Lagerabgang erfassen";
+}
+
+<h2>Lagerabgang erfassen</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="ArtikelId">Artikel</label>
+        <select asp-for="Abgang.ArtikelId" asp-items="Model.ArtikelListe" class="form-control">
+            <option value="">-- Bitte wählen --</option>
+        </select>
+        <span asp-validation-for="Abgang.ArtikelId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Menge">Menge</label>
+        <input asp-for="Abgang.Menge" class="form-control" />
+        <span asp-validation-for="Abgang.Menge" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Abgang.Grund" class="control-label">Grund</label>
+        <select asp-for="Abgang.Grund" asp-items="Model.Gründe" class="form-control">
+            <option value="">-- Bitte wählen --</option>
+        </select>
+        <span asp-validation-for="Abgang.Grund" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Kommentar">Kommentar (optional)</label>
+        <textarea asp-for="Abgang.Kommentar" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Speichern</button>
+    <a asp-page="/Index" class="btn btn-secondary">Abbrechen</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

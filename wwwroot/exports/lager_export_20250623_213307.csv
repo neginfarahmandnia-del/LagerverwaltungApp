@@ -1,0 +1,9 @@
+﻿Datum;Artikel;Grund;Vorher;Nachher;Benutzer
+2025-06-22;Tshirt;Defekt;0;0;
+2025-06-22;Heft;Verloren;0;0;
+2025-06-22;Tshirt;Interne Verwendung;0;0;
+2025-06-22;Heft;Verkauf;490;475;admin@lager.local
+2025-06-22;Heft;Rücksendung;475;450;admin@lager.local
+2025-06-23;Tshirt;Warenausgang;724;719;admin@lager.local
+2025-06-23;Kuli;Warenausgaenge;250;235;admin@lager.local
+2025-06-23;Laptop;Warenausgaenge;161;151;admin@lager.local

@@ -1,0 +1,25 @@
+﻿@page
+@model AbgaengeProBenutzerModel
+@{
+    ViewData["Title"] = "📋 Abgänge nach Benutzer";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Benutzername</th>
+            <th>Anzahl Abgänge</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BenutzerAbgaenge)
+        {
+            <tr>
+                <td>@item.Benutzername</td>
+                <td>@item.Anzahl</td>
+            </tr>
+        }
+    </tbody>
+</table>

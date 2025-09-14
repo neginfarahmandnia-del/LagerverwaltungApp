@@ -1,0 +1,23 @@
+﻿@page "{id:int}"
+@model LagerverwaltungApp.Pages.Bestellungen.DeleteModel
+@{
+    ViewData["Title"] = "Bestellung löschen";
+}
+
+<h1>Bestellung löschen</h1>
+
+<div class="alert alert-warning">
+    Möchtest du diese Bestellung wirklich löschen?
+</div>
+
+<div>
+    <p><strong>Artikel-ID:</strong> @Model.Bestellung.ArtikelId</p>
+    <p><strong>Menge:</strong> @Model.Bestellung.Menge</p>
+    <p><strong>Datum:</strong> @Model.Bestellung.Bestelldatum.ToShortDateString()</p>
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="Bestellung.Id" />
+    <button type="submit" class="btn btn-danger">Löschen</button>
+    <a asp-page="./Index" class="btn btn-secondary">Abbrechen</a>
+</form>

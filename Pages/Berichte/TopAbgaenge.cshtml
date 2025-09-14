@@ -1,0 +1,95 @@
+﻿@page
+@model LagerverwaltungApp.Pages.Berichte.TopAbgaengeModel
+@using System.Text.Json
+
+@{
+    ViewData["Title"] = "Top 10 Lagerabgänge";
+    var labelsJson = JsonSerializer.Serialize(Model.Labels);
+    var werteJson = JsonSerializer.Serialize(Model.Werte);
+}
+
+<h2>Top 10 Lagerabgänge</h2>
+
+<form method="get" class="mb-3">
+    <div class="row g-2">
+        <div class="col-md-2">
+            <select asp-for="Monat" class="form-control">
+                @for (int m = 1; m <= 12; m++)
+                {
+                    <option value="@m" selected="@(m == Model.Monat)">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(m)</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select asp-for="Jahr" class="form-control">
+                @for (int y = DateTime.Now.Year; y >= DateTime.Now.Year - 5; y--)
+                {
+                    <option value="@y" selected="@(y == Model.Jahr)">@y</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Anzeigen</button>
+        </div>
+    </div>
+</form>
+
+<canvas id="topAbgaengeChart" width="800" height="400"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const labels = @Html.Raw(@labelsJson);
+    const data = @Html.Raw(@werteJson);
+
+    const ctx = document.getElementById('topAbgaengeChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Menge',
+                data: data,
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+@if (Model.TopAbgaenge.Any())
+{
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Artikel</th>
+                <th>Menge</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var eintrag in Model.TopAbgaenge)
+            {
+                <tr>
+                    <td>@eintrag.ArtikelName</td>
+                    <td>@eintrag.Menge</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">Keine Abgänge im gewählten Zeitraum gefunden.</div>
+}

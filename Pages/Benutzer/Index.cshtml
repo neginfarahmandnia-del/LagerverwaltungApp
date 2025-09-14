@@ -1,0 +1,40 @@
+﻿@page
+@model Benutzer.IndexModel
+@{
+    ViewData["Title"] = "Benutzerübersicht";
+}
+
+<h2>Benutzerübersicht</h2>
+
+<a asp-page="Create" class="btn btn-primary mb-2">➕ Neuer Benutzer</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Benutzername</th>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Email</th>
+            <th>Rolle</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.BenutzerListe)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.Vorname</td>
+                <td>@user.Nachname</td>
+                <td>@user.Email</td>
+                <td>@user.Rolle</td>
+                <td>
+                    <a asp-page="Details" asp-route-id="@user.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-page="Edit" asp-route-id="@user.Id" class="btn btn-warning btn-sm">Bearbeiten</a>
+                    <a asp-page="Delete" asp-route-id="@user.Id" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Diesen Benutzer wirklich löschen?')">Löschen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

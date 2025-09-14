@@ -1,0 +1,34 @@
+﻿@page
+@model LagerverwaltungApp.Pages.Berichte.NiedrigerBestandModel
+@{
+    ViewData["Title"] = "Produkte mit niedrigem Bestand";
+}
+
+<h2>📉 Produkte mit niedrigem Bestand</h2>
+
+@if (!Model.ProdukteMitNiedrigemBestand.Any())
+{
+    <div class="alert alert-success">Alle Produkte haben ausreichenden Bestand.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead class="table-light">
+            <tr>
+                <th>Produkt</th>
+                <th>Bestand</th>
+                <th>Mindestbestand</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produkt in Model.ProdukteMitNiedrigemBestand)
+            {
+                <tr class="@(produkt.Bestand == 0 ? "table-danger" : "table-warning")">
+                    <td>@produkt.Name</td>
+                    <td>@produkt.Bestand</td>
+                    <td>@produkt.Mindestbestand</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

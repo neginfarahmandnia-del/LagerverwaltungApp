@@ -1,0 +1,67 @@
+﻿@page
+@model LagerverwaltungApp.Pages.Berichte.AbgaengeNachGrundModel
+@using System.Text.Json
+
+@{
+    ViewData["Title"] = "Abgänge nach Grund";
+
+    var labelsJson = JsonSerializer.Serialize(Model.Labels);
+    var werteJson = JsonSerializer.Serialize(Model.Werte);
+}
+
+<h2>Abgänge nach Grund</h2>
+
+<canvas id="abgangChart" width="800" height="400"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const labels = @Html.Raw(labelsJson);
+    const data = @Html.Raw(werteJson);
+
+    const ctx = document.getElementById('abgangChart').getContext('2d');
+    const abgangChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Menge',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Artikel</th>
+            <th>Grund</th>
+            <th>Menge</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var eintrag in Model.Statistik)
+        {
+            <tr>
+                <td>@eintrag.ArtikelName</td>
+                <td>@eintrag.Grund</td>
+                <td>@eintrag.Menge</td>
+            </tr>
+        }
+    </tbody>
+</table>

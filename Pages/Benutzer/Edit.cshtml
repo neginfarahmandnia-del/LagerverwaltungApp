@@ -1,0 +1,37 @@
+﻿@page "{id}"
+@model Benutzer.EditModel
+@{
+    ViewData["Title"] = "Benutzer bearbeiten";
+}
+
+<h2>Benutzer bearbeiten</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Input.Id" />
+    <div class="form-group">
+        <label asp-for="Input.UserName"></label>
+        <input asp-for="Input.UserName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Input.Vorname"></label>
+        <input asp-for="Input.Vorname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Input.Nachname"></label>
+        <input asp-for="Input.Nachname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Input.Email"></label>
+        <input asp-for="Input.Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Input.Rolle"></label>
+        <select asp-for="Input.Rolle" class="form-control">
+            <option>Admin</option>
+            <option>Manager</option>
+            <option>Mitarbeiter</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Speichern</button>
+    <a asp-page="Index" class="btn btn-secondary">Zurück</a>
+</form>

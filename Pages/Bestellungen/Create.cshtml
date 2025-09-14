@@ -1,0 +1,39 @@
+﻿@page
+@model LagerverwaltungApp.Pages.Bestellungen.CreateModel
+@{
+    ViewData["Title"] = "Neue Bestellung";
+}
+@if (TempData["Warnung"] != null)
+{
+    <div class="alert alert-warning">@TempData["Warnung"]</div>
+}
+
+<h1>Neue Bestellung</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Bestellung.ArtikelId" class="control-label"></label>
+        <select asp-for="Bestellung.ArtikelId" class="form-control" asp-items="Model.ArtikelListe"></select>
+        <span asp-validation-for="Bestellung.ArtikelId" class="text-danger"></span>
+    </div>
+
+
+
+    <div class="form-group">
+        <label asp-for="Bestellung.Menge" class="control-label">Menge</label>
+        <input asp-for="Bestellung.Menge" class="form-control" />
+        <span asp-validation-for="Bestellung.Menge" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Bestellung.Bestelldatum" class="control-label">Datum</label>
+        <input asp-for="Bestellung.Bestelldatum" class="form-control" type="date" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Speichern</button>
+    <a asp-page="./Index" class="btn btn-secondary">Zurück</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

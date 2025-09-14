@@ -1,0 +1,34 @@
+﻿@page
+@model LagerverwaltungApp.Pages.Warenausgaenge.CreateModel
+@{
+    ViewData["Title"] = "Neuer Warenausgang";
+}
+
+<h2>📤 Neuer Warenausgang</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="ArtikelId">Artikel</label>
+        <select asp-for="ArtikelId" class="form-control" asp-items="@(new SelectList(Model.ArtikelListe, "Id", "Name"))">
+            <option value="">Bitte wählen</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Menge">Menge</label>
+        <input asp-for="Menge" class="form-control" />
+        <span asp-validation-for="Menge" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Kommentar">Kommentar</label>
+        <textarea asp-for="Kommentar" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Speichern</button>
+    <a asp-page="/Warenausgaenge/Index" class="btn btn-secondary">Zurück</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

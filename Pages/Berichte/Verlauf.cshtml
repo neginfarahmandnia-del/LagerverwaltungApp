@@ -1,0 +1,33 @@
+﻿@page
+@model VerlaufModel
+@{
+    ViewData["Title"] = "📦 Bestandsverlauf";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Artikel</th>
+            <th>Bestand vorher</th>
+            <th>Änderung</th>
+            <th>Bestand nachher</th>
+            <th>Benutzer</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model.Verlauf)
+        {
+            <tr>
+                <td>@v.Datum.ToShortDateString()</td>
+                <td>@v.ArtikelName</td>
+                <td>@v.Vorher</td>
+                <td>@v.Aenderung</td>
+                <td>@v.Nachher</td>
+                <td>@v.Benutzername</td>
+            </tr>
+        }
+    </tbody>
+</table>

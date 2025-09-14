@@ -1,0 +1,40 @@
+﻿@page "{id:int}"
+@model LagerverwaltungApp.Pages.Bestellungen.DetailsModel
+@{
+    ViewData["Title"] = "Bestellungsdetails";
+}
+
+<h1>Bestellungsdetails</h1>
+
+<div>
+    @if (Model.Bestellung?.Artikel != null)
+    {
+        <h4>Artikel: @Model.Bestellung.Artikel.Name</h4>
+    }
+    else
+    {
+        <h4>Artikel: (nicht verfügbar)</h4>
+    }
+
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Menge</dt>
+        <dd class="col-sm-10">@Model.Bestellung?.Menge</dd>
+
+        <dt class="col-sm-2">Bestelldatum</dt>
+        <dd class="col-sm-10">@Model.Bestellung?.Bestelldatum.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Benutzer</dt>
+        @if (Model.Bestellung?.Benutzer != null)
+        {
+            <dd class="col-sm-10">@Model.Bestellung.Benutzer.UserName</dd>
+        }
+        else
+        {
+            <dd class="col-sm-10 text-danger">Kein Benutzer vorhanden</dd>
+        }
+    </dl>
+</div>
+
+<a asp-page="./Index" class="btn btn-secondary">Zurück</a>

@@ -1,0 +1,39 @@
+﻿@page
+@model LagerverwaltungApp.Pages.Warenausgaenge.IndexModel
+@{
+    ViewData["Title"] = "Warenausgänge";
+}
+
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>📤 Warenausgänge</h2>
+    <a asp-page="Create" class="btn btn-success">➕ Neuer Warenausgang</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Artikel</th>
+            <th>Menge</th>
+            <th>Vorher</th>
+            <th>Nachher</th>
+            <th>Benutzer</th>
+            <th>Kommentar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var abgang in Model.Abgaenge)
+        {
+            <tr>
+                <td>@abgang.Datum.ToString("g")</td>
+                <td>@abgang.Artikel?.Name</td>
+                <td>@abgang.Menge</td>
+                <td>@abgang.VorherMenge</td>
+                <td>@abgang.NachherMenge</td>
+                <td>@(abgang.Benutzer?.UserName ?? "Unbekannt")</td>
+                <td>@abgang.Kommentar</td>
+            </tr>
+        }
+    </tbody>
+</table>
